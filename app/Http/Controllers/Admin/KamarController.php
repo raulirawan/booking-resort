@@ -23,7 +23,7 @@ class KamarController extends Controller
             'gambar.*' => 'mimes:jpeg,png,jpg,gif,svg|max:2048',
             ],
             [
-                'gambar.mimes' => 'Gambar Harus Bertipe PNG, JPG, JPEG atau BMP',
+            'gambar.*.mimes' => 'Gambar Harus Bertipe PNG, JPG, JPEG atau BMP',
             ]
         );
 
@@ -76,7 +76,7 @@ class KamarController extends Controller
             'gambar.*' => 'mimes:jpeg,png,jpg,gif,svg|max:2048',
             ],
             [
-                'gambar.mimes' => 'Gambar Harus Bertipe PNG, JPG, JPEG atau BMP',
+            'gambar.*.mimes' => 'Gambar Harus Bertipe PNG, JPG, JPEG atau BMP',
             ]
         );
 

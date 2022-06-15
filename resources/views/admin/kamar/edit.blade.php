@@ -114,7 +114,11 @@
 
                                     <input type="file" class="form-control" name="gambar[]"
                                     multiple>
+                                    @if ($errors->has('gambar.*'))
+                                    <span class="text-danger">{{ $errors->first('gambar.*') }}</span>
+                                    @else
                                     <div class="text-muted">Gambar Bisa Lebih Dari Satu</div>
+                                    @endif
 
                                     <div class="row mt-4">
                                         @if ($gambar != null)
@@ -130,10 +134,6 @@
                                         <div class="text-center">No Image</div>
                                         @endif
                                      </div>
-                                    @if ($errors->has('gambar'))
-                                    <span class="text-danger">{{ $errors->first('gambar') }}</span>
-                                    @else
-                                    @endif
                                 </div>
                                 <div class="col-sm-12 d-flex justify-content-start">
                                     <button type="submit" class="btn btn-primary me-1 mb-1">Update</button>

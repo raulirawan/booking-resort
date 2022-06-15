@@ -143,8 +143,8 @@
                                     <label for="helpInputTop">Gambar</label>
                                     <input type="file" class="form-control" name="gambar[]"
                                     multiple required>
-                                    @if ($errors->has('gambar'))
-                                    <span class="text-danger">{{ $errors->first('gambar') }}</span>
+                                    @if ($errors->has('gambar.*'))
+                                    <span class="text-danger">{{ $errors->first('gambar.*') }}</span>
                                     @else
                                     <div class="text-muted">Gambar Bisa Lebih Dari Satu</div>
                                     @endif
@@ -152,7 +152,7 @@
 
                                 <div class="form-group">
                                     <label for="helpInputTop">Pilih Services</label>
-                                    <select class="choices form-select" name="services[]" multiple="multiple">
+                                    <select class="choices form-select" name="services[]" multiple="multiple" required>
                                         <option value="AC">AC</option>
                                         <option value="WiFi">WiFi</option>
                                         <option value="Service 24 Jam">Service 24 Jam</option>

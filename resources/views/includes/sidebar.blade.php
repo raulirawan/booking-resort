@@ -83,8 +83,8 @@
                     </ul>
                 </li>
 
-                <li class="sidebar-item">
-                    <a href="index.html" class='sidebar-link'>
+                <li class="sidebar-item {{ request()->is('admin/objek/wisata*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.objek.wisata.index') }}" class='sidebar-link'>
                         <i class="bi bi-geo-fill"></i>
                         <span>Objek Wisata</span>
                     </a>

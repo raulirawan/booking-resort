@@ -35,11 +35,11 @@ Route::prefix('admin')
     Route::get('kamar/delete/{id}', 'Admin\KamarController@delete')->name('admin.kamar.delete');
 
 
-    // // CRUD PRODUK
-    // Route::get('produk', 'Admin\ProdukController@index')->name('admin.produk.index');
-    // Route::post('produk/create', 'Admin\ProdukController@store')->name('admin.produk.store');
-    // Route::post('produk/update/{id}', 'Admin\ProdukController@update')->name('admin.produk.update');
-    // Route::delete('produk/delete/{id}', 'Admin\ProdukController@delete')->name('admin.produk.delete');
+    // CRUD OBJEK WISATA
+    Route::get('objek/wisata', 'Admin\ObjekWisataController@index')->name('admin.objek.wisata.index');
+    Route::post('objek/wisata/create', 'Admin\ObjekWisataController@store')->name('admin.objek.wisata.store');
+    Route::post('objek/wisata/update/{id}', 'Admin\ObjekWisataController@update')->name('admin.objek.wisata.update');
+    Route::get('objek/wisata/delete/{id}', 'Admin\ObjekWisataController@delete')->name('admin.objek.wisata.delete');
 
     // // Transaksi
     // Route::get('transaksi', 'Admin\TransaksiController@index')->name('admin.transaksi.index');
