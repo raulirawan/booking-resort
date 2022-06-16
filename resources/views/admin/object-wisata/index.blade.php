@@ -49,6 +49,7 @@
                     <th>Nama Wisata</th>
                     <th>Jarak</th>
                     <th>Link Gmaps</th>
+                    <th>Gambar</th>
                     <th style="width: 15%">Aksi</th>
                   </tr>
                 </thead>
@@ -60,11 +61,19 @@
                     <td>{{ $item->jarak }}</td>
                     <td>{{ $item->link_maps }}</td>
                     <td>
+                        @if ($item->gambar != null)
+                        <img src="{{ asset($item->gambar) }}" style="width: 100px">
+                        @else
+                        <img src="https://overlay.imageonline.co/image.jpg" style="width: 100px">
+                        @endif
+                    </td>
+                    <td>
                       <button href="" class="btn btn-info btn-sm" id="edit"
                       data-id="{{ $item->id }}"
                       data-nama_wisata="{{ $item->nama_wisata }}"
                       data-jarak="{{ $item->jarak }}"
                       data-link_maps="{{ $item->link_maps }}"
+                      data-gambar="{{ $item->gambar }}"
                       data-bs-toggle="modal"
                       data-bs-target="#modal-edit">Edit</button>
                       <a href="{{ route('admin.objek.wisata.delete', $item->id) }}"
@@ -112,6 +121,10 @@
                         <div class="form-group">
                             <label for="helpInputTop">Link Maps</label>
                             <input type="text" class="form-control" value="{{ old('link_maps') }}" name="link_maps" placeholder="Masukan Link Maps" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="helpInputTop">Gambar</label>
+                            <input type="file" class="form-control"  name="gambar"  required>
                         </div>
 
 
@@ -163,7 +176,11 @@ aria-labelledby="myModalLabel1" aria-hidden="true">
                             <label for="helpInputTop">Link Maps</label>
                             <input type="text" class="form-control" id="link_maps" value="{{ old('link_maps') }}" name="link_maps" placeholder="Masukan Link Maps" required>
                         </div>
-
+                        <div class="form-group">
+                            <label for="helpInputTop">Gambar</label>
+                            <input type="file" class="form-control" name="gambar" placeholder="Masukan Link Maps">
+                            <img src="" id="gambar" class="mt-2" style="width: 100px">
+                        </div>
 
                       </div>
                 </div>
@@ -203,9 +220,17 @@ aria-labelledby="myModalLabel1" aria-hidden="true">
                 var nama_wisata = $(this).data('nama_wisata');
                 var jarak = $(this).data('jarak');
                 var link_maps = $(this).data('link_maps');
+                var gambar = $(this).data('gambar');
+                var url = '{{ url('/') }}';
                 $('#nama_wisata').val(nama_wisata);
                 $('#jarak').val(jarak);
                 $('#link_maps').val(link_maps);
+                if(gambar != '') {
+                    $('#gambar').attr('src', url + '/' + gambar);
+
+                }else {
+                $('#gambar').attr('src','https://overlay.imageonline.co/image.jpg');
+                }
                 $('#form-edit').attr('action','/admin/objek/wisata/update/' + id);
             });
         });

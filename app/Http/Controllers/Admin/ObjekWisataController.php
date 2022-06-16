@@ -21,6 +21,17 @@ class ObjekWisataController extends Controller
         $data->nama_wisata = $request->nama_wisata;
         $data->jarak = $request->jarak;
         $data->link_maps = $request->link_maps;
+
+        if($request->hasFile('gambar')) {
+            $file = $request->file('gambar');
+            $tujuan_upload = 'image/wisata/';
+            $nama_file = time()."_".$file->getClientOriginalName();
+            $nama_file = str_replace(' ', '', $nama_file);
+            $file->move($tujuan_upload,$nama_file);
+
+            $data->gambar = $tujuan_upload.$nama_file;
+        }
+
         $data->save();
 
         if($data != null) {
@@ -37,6 +48,18 @@ class ObjekWisataController extends Controller
         $data->nama_wisata = $request->nama_wisata;
         $data->jarak = $request->jarak;
         $data->link_maps = $request->link_maps;
+
+        if($request->hasFile('gambar')) {
+            $file = $request->file('gambar');
+            $tujuan_upload = 'image/wisata/';
+            $nama_file = time()."_".$file->getClientOriginalName();
+            $nama_file = str_replace(' ', '', $nama_file);
+            $file->move($tujuan_upload,$nama_file);
+            if(file_exists($data->gambar)) {
+                unlink($data->gambar);
+            }
+            $data->gambar = $tujuan_upload.$nama_file;
+        }
         $data->save();
         if($data != null) {
             Alert::success('Success','Data Berhasil di Update');

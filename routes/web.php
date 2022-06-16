@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::prefix('admin')
-// ->middleware(['admin','auth'])
+->middleware(['admin','auth'])
 ->group(function () {
     Route::get('dashboard','Admin\DashboardController@index')->name('admin.dashboard.index');
 
@@ -42,8 +42,18 @@ Route::prefix('admin')
     Route::get('objek/wisata/delete/{id}', 'Admin\ObjekWisataController@delete')->name('admin.objek.wisata.delete');
 
     // // Transaksi
-    // Route::get('transaksi', 'Admin\TransaksiController@index')->name('admin.transaksi.index');
+    Route::get('transaksi', 'Admin\TransaksiController@index')->name('admin.transaksi.index');
+    Route::get('transaksi/check-in', 'Admin\TransaksiController@checkInIndex')->name('admin.transaksi.check.in.index');
+    Route::get('transaksi/check-out', 'Admin\TransaksiController@checkOutIndex')->name('admin.transaksi.check.out.index');
+
+    Route::get('transaksi/check/in/out/{id}', 'Admin\TransaksiController@updateStatusCheckInOut')->name('admin.transaksi.update.status.check.in.out');
+    Route::get('transaksi/cancel', 'Admin\TransaksiController@updateCancel')->name('admin.transaksi.update.cancel');
+
     // Route::get('transaksi/detail/{id}', 'Admin\TransaksiController@detail')->name('admin.transaksi.detail');
     // Route::post('transaksi/update/{id}', 'Admin\TransaksiController@update')->name('admin.transaksi.update');
     // Route::post('transaksi/update/resi/{id}', 'Admin\TransaksiController@updateResi')->name('admin.transaksi.update.resi');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
