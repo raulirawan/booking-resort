@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Kamar;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -30,6 +31,7 @@ class KamarController extends Controller
 
         $data = new Kamar();
         $data->nama_kamar = $request->nama_kamar;
+        $data->slug = Str::slug($request->nama_kamar);
         $data->tipe_kamar = $request->tipe_kamar;
         $data->jenis_bed = $request->jenis_bed;
         $data->luas = $request->luas;
@@ -82,6 +84,7 @@ class KamarController extends Controller
 
         $data = Kamar::findOrFail($id);
         $data->nama_kamar = $request->nama_kamar;
+        $data->slug = Str::slug($request->nama_kamar);
         $data->tipe_kamar = $request->tipe_kamar;
         $data->jenis_bed = $request->jenis_bed;
         $data->luas = $request->luas;

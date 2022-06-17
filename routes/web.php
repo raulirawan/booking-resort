@@ -12,8 +12,21 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/clear-cache', function () {
+    Artisan::call('config:cache');
+    Artisan::call('view:clear');
+    Artisan::call('route:clear');
+});
 
+Route::get('/kamar/detail/{slug}','CheckAvailabilityController@kamarDetail')->name('kamar.detail');
+Route::post('/check-availability','CheckAvailabilityController@search')->name('check.availability');
 
+Route::get('/booking/form','BookingController@formBooking')->name('booking.form');
+Route::post('/booking/form','BookingController@formBookingPost')->name('booking.form.store');
+
+Route::get('/', function() {
+    return view('home');
+});
 
 Route::prefix('admin')
 ->middleware(['admin','auth'])
@@ -52,6 +65,14 @@ Route::prefix('admin')
     // Route::get('transaksi/detail/{id}', 'Admin\TransaksiController@detail')->name('admin.transaksi.detail');
     // Route::post('transaksi/update/{id}', 'Admin\TransaksiController@update')->name('admin.transaksi.update');
     // Route::post('transaksi/update/resi/{id}', 'Admin\TransaksiController@updateResi')->name('admin.transaksi.update.resi');
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/profil','ProfilController@index')->name('profile.index');
+    Route::post('/profil','ProfilController@update')->name('profile.update');
+    Route::post('/profil/change-password','ProfilController@updatePassword')->name('update.password.profile');
+
+    Route::get('/transaksi','TransaksiController@index')->name('transaksi.index');
 });
 
 Auth::routes();

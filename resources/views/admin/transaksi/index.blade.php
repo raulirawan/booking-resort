@@ -54,7 +54,7 @@
                     <option value="CANCELLED">CANCELLED</option>
                 </select>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <button type="submit" name="filter" id="filter" class="btn btn-primary">Filter</button>
                 <button type="button" name="refresh" id="refresh"
                     class="btn btn-default">Refresh</button>
