@@ -84,15 +84,15 @@
                         <div class="row justify-content-between align-items-end">
                             <div class="col-6 col-md-2 col-lg-3">
                                 <label for="checkIn">Check In</label>
-                                <input type="date" class="form-control" id="checkIn" value="{{ date("Y-m-d", strtotime(date("d-m-Y"))) }}" name="checkin_date">
+                                <input type="date" class="form-control" id="checkIn" value="{{ date("Y-m-d", strtotime(date("d-m-Y"))) }}" name="checkin_date" required>
                             </div>
                             <div class="col-6 col-md-2 col-lg-3">
                                 <label for="checkOut">Check Out</label>
-                                <input type="date" class="form-control" id="checkOut" value="{{ date("Y-m-d", strtotime("+1 day", strtotime(date("d-m-Y")))) }}" name="checkout_date">
+                                <input type="date" class="form-control" id="checkOut" value="{{ date("Y-m-d", strtotime("+1 day", strtotime(date("d-m-Y")))) }}" name="checkout_date" required>
                             </div>
                             <div class="col-4 col-md-1">
-                                <label for="room">Room</label>
-                                <select name="room" id="room" class="form-control">
+                                <label for="room">Jumlah Kamar</label>
+                                <select name="room" id="room" class="form-control" required>
                                     <option value="1">01</option>
                                     <option value="2">02</option>
                                     <option value="3">03</option>
@@ -102,8 +102,8 @@
                                 </select>
                             </div>
                             <div class="col-4 col-md-1">
-                                <label for="adults">Adult</label>
-                                <select name="adults" id="adults" class="form-control">
+                                <label for="adults">Dewasa</label>
+                                <select name="adults" id="adults" class="form-control" required>
                                     <option value="1">01</option>
                                     <option value="2">02</option>
                                     <option value="3">03</option>
@@ -113,8 +113,8 @@
                                 </select>
                             </div>
                             <div class="col-4 col-md-2 col-lg-1">
-                                <label for="children">Children</label>
-                                <select name="children" id="children" class="form-control">
+                                <label for="children">Anak - Anak</label>
+                                <select name="children" id="children" class="form-control" required>
                                     <option value="0">00</option>
                                     <option value="1">01</option>
                                     <option value="2">02</option>
@@ -222,48 +222,33 @@
     <section class="roberto-rooms-area">
         <div class="rooms-slides owl-carousel">
             <!-- Single Room Slide -->
-            <div class="single-room-slide d-flex align-items-center">
-                <!-- Thumbnail -->
-                <div class="room-thumbnail h-100 corea-im"
-                    style="background-image: url({{ asset('frontend') }}/img/bg-img/16.jpg);"></div>
-
-                <!-- Content -->
-                <div class="room-content">
-                    <h2 data-animation="fadeInUp" data-delay="100ms">Premium King Room</h2>
-                    <h3 data-animation="fadeInUp" data-delay="300ms">400$ <span>/ Day</span></h3>
-                    <ul class="room-feature" data-animation="fadeInUp" data-delay="500ms">
-                        <li><span><i class="fa fa-check"></i> Size</span> <span>: 30 ft</span></li>
-                        <li><span><i class="fa fa-check"></i> Capacity</span> <span>: Max persion 5</span></li>
-                        <li><span><i class="fa fa-check"></i> Bed</span> <span>: King Beds</span></li>
-                        <li><span><i class="fa fa-check"></i> Services</span> <span>: Wifi, Television, Bathroom</span>
-                        </li>
-                    </ul>
-                    <a href="#" class="btn roberto-btn mt-30" data-animation="fadeInUp" data-delay="700ms">View
-                        Details</a>
-                </div>
-            </div>
-
-            <!-- Single Room Slide -->
+            @foreach (App\Kamar::all() as $kamar)
             <div class="single-room-slide d-flex align-items-center">
                 <!-- Thumbnail -->
                 <div class="room-thumbnail h-100 bg-img"
-                    style="background-image: url({{ asset('frontend') }}/img/bg-img/17.jpg);"></div>
+                    style="background-image: url({{ asset(json_decode($kamar->gambar)[0]) }});"></div>
 
                 <!-- Content -->
                 <div class="room-content">
-                    <h2 data-animation="fadeInUp" data-delay="100ms">Best King Room</h2>
-                    <h3 data-animation="fadeInUp" data-delay="300ms">125$ <span>/ Day</span></h3>
+                    <h2 data-animation="fadeInUp" data-delay="100ms">{{ $kamar->nama_kamar }}</h2>
+                    <h3 data-animation="fadeInUp" data-delay="300ms">Rp{{ number_format($kamar->harga) }} <span>/ Hari</span></h3>
                     <ul class="room-feature" data-animation="fadeInUp" data-delay="500ms">
-                        <li><span><i class="fa fa-check"></i> Size</span> <span>: 30 ft</span></li>
-                        <li><span><i class="fa fa-check"></i> Capacity</span> <span>: Max persion 5</span></li>
-                        <li><span><i class="fa fa-check"></i> Bed</span> <span>: King Beds</span></li>
-                        <li><span><i class="fa fa-check"></i> Services</span> <span>: Wifi, Television, Bathroom</span>
+                        <li><span><i class="fa fa-check"></i> Size</span> <span>: {{ $kamar->luas }} ft</span></li>
+                        <li><span><i class="fa fa-check"></i> Tipe</span> <span>: {{ $kamar->tipe_kamar }}</span></li>
+                        <li><span><i class="fa fa-check"></i> Bed</span> <span>: {{ $kamar->jenis_bed }}</span></li>
+                        <li><span><i class="fa fa-check"></i> Services</span> <span>:
+                            @foreach (json_decode($kamar->services) as $service)
+                                {{ $service }},
+                            @endforeach
+                        </span>
                         </li>
                     </ul>
-                    <a href="#" class="btn roberto-btn mt-30" data-animation="fadeInUp" data-delay="700ms">View
-                        Details</a>
                 </div>
             </div>
+            @endforeach
+
+            <!-- Single Room Slide -->
+
         </div>
     </section>
     <!-- Our Room Area End -->
@@ -277,69 +262,29 @@
                 <!-- Section Heading -->
                 <div class="col-12">
                     <div class="section-heading text-center wow fadeInUp" data-wow-delay="100ms">
-                        <h6>Our Blog</h6>
-                        <h2>Latest News &amp; Event</h2>
+                        <h6>Referensi Wisata</h6>
+                        <h2>Wisata Terdekat</h2>
                     </div>
                 </div>
             </div>
 
             <div class="row">
                 <!-- Single Post Area -->
+                @foreach (App\ObjekWisata::all() as $wisata)
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="single-post-area mb-100 wow fadeInUp" data-wow-delay="300ms">
-                        <a href="#" class="post-thumbnail"><img src="{{ asset('frontend') }}/img/bg-img/2.jpg"
+                        <a href="{{ $wisata->link_maps }}" target="_blank" class="post-thumbnail"><img src="{{ asset($wisata->gambar) }}"
                                 alt=""></a>
-                        <!-- Post Meta -->
-                        <div class="post-meta">
-                            <a href="#" class="post-date">Jan 02, 2019</a>
-                            <a href="#" class="post-catagory">Event</a>
-                        </div>
-                        <!-- Post Title -->
-                        <a href="#" class="post-title">Learn How To Motivate Yourself</a>
-                        <p>How many free autoresponders have you tried? And how many emails did you get through using them?
+                        <a href="#" class="post-title">{{ $wisata->nama_wisata }}</a>
+                        <p style="display: inline-block; float: right"><span>{{ $wisata->jarak }}</span>
                         </p>
-                        <a href="index.html" class="btn continue-btn"><i class="fa fa-long-arrow-right"
-                                aria-hidden="true"></i></a>
+                        <a href="index.html" class="btn continue-btn"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
                     </div>
                 </div>
 
+                @endforeach
                 <!-- Single Post Area -->
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="single-post-area mb-100 wow fadeInUp" data-wow-delay="500ms">
-                        <a href="#" class="post-thumbnail"><img src="{{ asset('frontend') }}/img/bg-img/3.jpg"
-                                alt=""></a>
-                        <!-- Post Meta -->
-                        <div class="post-meta">
-                            <a href="#" class="post-date">Jan 02, 2019</a>
-                            <a href="#" class="post-catagory">Event</a>
-                        </div>
-                        <!-- Post Title -->
-                        <a href="#" class="post-title">What If Let You Run The Hubble</a>
-                        <p>My point here is that if you have no clue for the answers above you probably are not operating a
-                            followup.</p>
-                        <a href="index.html" class="btn continue-btn"><i class="fa fa-long-arrow-right"
-                                aria-hidden="true"></i></a>
-                    </div>
-                </div>
 
-                <!-- Single Post Area -->
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="single-post-area mb-100 wow fadeInUp" data-wow-delay="700ms">
-                        <a href="#" class="post-thumbnail"><img src="{{ asset('frontend') }}/img/bg-img/4.jpg"
-                                alt=""></a>
-                        <!-- Post Meta -->
-                        <div class="post-meta">
-                            <a href="#" class="post-date">Jan 02, 2019</a>
-                            <a href="#" class="post-catagory">Event</a>
-                        </div>
-                        <!-- Post Title -->
-                        <a href="#" class="post-title">Six Pack Abs The Big Picture</a>
-                        <p>Some good steps to take to ensure you are getting what you need out of a autoresponder include…
-                        </p>
-                        <a href="index.html" class="btn continue-btn"><i class="fa fa-long-arrow-right"
-                                aria-hidden="true"></i></a>
-                    </div>
-                </div>
 
             </div>
         </div>

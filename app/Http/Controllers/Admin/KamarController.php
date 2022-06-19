@@ -36,7 +36,7 @@ class KamarController extends Controller
         $data->jenis_bed = $request->jenis_bed;
         $data->luas = $request->luas;
         $data->harga = $request->harga;
-        $data->stok = $request->stok;
+        // $data->stok = $request->stok;
 
         if($request->hasFile('gambar')) {
             $dataGambar = [];
@@ -89,7 +89,7 @@ class KamarController extends Controller
         $data->jenis_bed = $request->jenis_bed;
         $data->luas = $request->luas;
         $data->harga = $request->harga;
-        $data->stok = $request->stok;
+        // $data->stok = $request->stok;
         $services = json_encode($request->services);
 
         $data->services = $services;

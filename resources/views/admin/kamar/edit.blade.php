@@ -68,11 +68,11 @@
                                     <input type="number" class="form-control" value="{{ $data->harga }}" name="harga"
                                         placeholder="Masukan Harga Kamar" required>
                                 </div>
-                                <div class="form-group">
+                                {{-- <div class="form-group">
                                     <label for="basicInput">Stok Kamar</label>
                                     <input type="number" class="form-control" value="{{ $data->stok }}" name="stok"
                                         placeholder="Masukan Stok Kamar" required>
-                                </div>
+                                </div> --}}
                                 <div class="form-group">
                                     @php
                                         $services = json_decode($data->services)

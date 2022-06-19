@@ -47,7 +47,7 @@
                                     <th>Tipe Kamar</th>
                                     <th>Jenis Bed</th>
                                     <th>Harga</th>
-                                    <th>Stok</th>
+                                    {{-- <th>Stok</th> --}}
                                     <th>Gambar</th>
                                     <th style="width: 15%">Aksi</th>
                                 </tr>
@@ -60,7 +60,7 @@
                                         <td>{{ $item->tipe_kamar }}</td>
                                         <td>{{ $item->jenis_bed }}</td>
                                         <td>Rp{{ number_format($item->harga) }}</td>
-                                        <td>{{ $item->stok }}</td>
+                                        {{-- <td>{{ $item->stok }}</td> --}}
                                         <td>
                                             @php
                                                 $gambar = json_decode($item->gambar);
@@ -133,11 +133,11 @@
                                     <input type="number" class="form-control" value="{{ old('harga') }}" name="harga"
                                         placeholder="Masukan Harga Kamar" required>
                                 </div>
-                                <div class="form-group">
+                                {{-- <div class="form-group">
                                     <label for="basicInput">Stok Kamar</label>
                                     <input type="number" class="form-control" value="{{ old('stok') }}" name="stok"
                                         placeholder="Masukan Stok Kamar" required>
-                                </div>
+                                </div> --}}
 
                                 <div class="form-group">
                                     <label for="helpInputTop">Gambar</label>

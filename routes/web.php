@@ -18,14 +18,24 @@ Route::get('/clear-cache', function () {
     Artisan::call('route:clear');
 });
 
+Route::get('/', function() {
+    return view('home');
+});
+
+Route::get('/kanar', function() {
+    return view('kamar');
+})->name('kamar.list');
+Route::get('/wisata-terdekat', function() {
+    return view('wisata-terdekat');
+})->name('wisata.terdekat');
 Route::get('/kamar/detail/{slug}','CheckAvailabilityController@kamarDetail')->name('kamar.detail');
 Route::post('/check-availability','CheckAvailabilityController@search')->name('check.availability');
 
-Route::get('/booking/form','BookingController@formBooking')->name('booking.form');
-Route::post('/booking/form','BookingController@formBookingPost')->name('booking.form.store');
 
-Route::get('/', function() {
-    return view('home');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/booking/form','BookingController@formBooking')->name('booking.form');
+    Route::post('/booking/form','BookingController@formBookingPost')->name('booking.form.store');
 });
 
 Route::prefix('admin')
@@ -78,3 +88,5 @@ Route::middleware(['auth'])->group(function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/midtrans/callback', 'MidtransController@callback')->name('callback');
+

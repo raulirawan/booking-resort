@@ -42,7 +42,7 @@
                                         <th style="width: 15%">Aksi</th>
                                     </tr>
                                     <tbody>
-                                        @foreach ($data as $transaksi)
+                                        @forelse ($data as $transaksi)
                                             <tr>
                                                 <td>{{ $transaksi->created_at }}</td>
                                                 <td>{{ $transaksi->kode_transaksi }}</td>
@@ -85,7 +85,11 @@
                                                         @endif
                                                 </td>
                                             </tr>
-                                        @endforeach
+                                        @empty
+                                        <tr>
+                                            <td colspan="8" class="text-center">Belum Ada Data</td>
+                                        </tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>

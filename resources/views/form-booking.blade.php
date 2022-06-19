@@ -1,6 +1,6 @@
 @extends('layouts.frontend')
 
-@section('title', 'Halaman Profil')
+@section('title', 'Halaman Form Booking')
 
 @section('content')
 

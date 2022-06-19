@@ -46,7 +46,7 @@
                 <nav class="classy-navbar justify-content-between" id="robertoNav">
 
                     <!-- Logo -->
-                    <a class="nav-brand" href="index.html"><img src="{{ asset('frontend') }}/img/core-img/logo.png" alt=""></a>
+                    <a class="nav-brand" href="{{ url('/') }}"><img src="{{ asset('frontend') }}/img/core-img/logo.png" alt=""></a>
 
                     <!-- Navbar Toggler -->
                     <div class="classy-navbar-toggler">
@@ -62,9 +62,9 @@
                         <!-- Nav Start -->
                         <div class="classynav">
                             <ul id="nav">
-                                <li class="active"><a href="#">Home</a></li>
-                                <li><a href="#">Kamar</a></li>
-                                <li><a href="#">Wisata Terdekat</a></li>
+                                <li class="active"><a href="{{ url('/') }}">Home</a></li>
+                                <li><a href="{{ route('kamar.list') }}">Kamar</a></li>
+                                <li><a href="{{ route('wisata.terdekat') }}">Wisata Terdekat</a></li>
                                 @auth
                                 <li><a href="#"
                                     >Halo {{ ucfirst(Auth::user()->name) }}</a>
