@@ -62,10 +62,12 @@ class BookingController extends Controller
                 'order_id' => $kode_transaksi,
                 'gross_amount' => (int) $request->total_harga,
             ],
-
             'customer_details' => [
                 'first_name' => Auth::user()->name,
                 'email' => Auth::user()->email,
+            ],
+            'callbacks' => [
+                'finish' => 'https://sibeabearesort.my.ic.com/transaksi',
             ],
             'enable_payments' => ['bca_va','permata_va','bni_va','bri_va','gopay'],
             'vtweb' => [],

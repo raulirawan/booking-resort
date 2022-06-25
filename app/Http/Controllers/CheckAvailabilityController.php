@@ -21,7 +21,7 @@ class CheckAvailabilityController extends Controller
              ->select('kamar_id')
              ->where('tanggal_check_in', '<=', $from)
              ->where('tanggal_check_out', '>=', $to)
-             ->where('status','CHECK IN');
+             ->whereIn('status',['SUCCESS','CHECKIN']);
          })
          ->get();
         return view('list-kamar', compact('from','to','kamar','total_kamar','adult','children'));
