@@ -46,7 +46,7 @@
                 <nav class="classy-navbar justify-content-between" id="robertoNav">
 
                     <!-- Logo -->
-                    <a class="nav-brand" href="{{ url('/') }}"><img src="{{ asset('frontend') }}/img/core-img/logo.png" alt=""></a>
+                    <a class="nav-brand" href="{{ url('/') }}"><img src="{{ asset('assets/images/logo-sibea-bea.png') }}" alt=""></a>
 
                     <!-- Navbar Toggler -->
                     <div class="classy-navbar-toggler">
