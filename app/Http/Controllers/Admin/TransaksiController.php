@@ -18,40 +18,34 @@ class TransaksiController extends Controller
                     $query  = Transaksi::query();
                     if ($request->status_transaksi != 'SEMUA') {
                         $query->with(['kamar', 'pengunjung'])
-                        ->whereDate('created_at', $request->from_date)
-                        ->where('status', $request->status_transaksi);
-                    }else {
+                            ->whereDate('created_at', $request->from_date)
+                            ->where('status', $request->status_transaksi);
+                    } else {
                         $query->with(['kamar', 'pengunjung'])
-                        ->whereDate('created_at', $request->from_date);
+                            ->whereDate('created_at', $request->from_date);
                     }
-
-
                 } else {
                     $query  = Transaksi::query();
                     if ($request->status_transaksi != 'SEMUA') {
                         $query->with(['kamar', 'pengunjung'])
-                        ->whereBetween('created_at', [$request->from_date . ' 00:00:00', $request->to_date . ' 23:59:59'])
-                        ->where('status', $request->status_transaksi);
+                            ->whereBetween('created_at', [$request->from_date . ' 00:00:00', $request->to_date . ' 23:59:59'])
+                            ->where('status', $request->status_transaksi);
                     } else {
                         $query->with(['kamar', 'pengunjung'])
-                        ->whereBetween('created_at', [$request->from_date . ' 00:00:00', $request->to_date . ' 23:59:59']);
+                            ->whereBetween('created_at', [$request->from_date . ' 00:00:00', $request->to_date . ' 23:59:59']);
                     }
-
-
                 }
             } else {
                 $today = date('Y-m-d');
                 $query  = Transaksi::query();
                 if ($request->status_transaksi != 'SEMUA') {
                     $query->with(['kamar', 'pengunjung'])
-                    ->whereDate('created_at', $today)
-                    ->where('status', $request->status_transaksi);
+                        ->whereDate('created_at', $today)
+                        ->where('status', $request->status_transaksi);
                 } else {
                     $query->with(['kamar', 'pengunjung'])
-                    ->whereDate('created_at', $today);
+                        ->whereDate('created_at', $today);
                 }
-
-
             }
 
             return DataTables::of($query)
@@ -86,7 +80,7 @@ class TransaksiController extends Controller
                     } elseif ($item->status == 'SUCCESS') {
                         return '<span class="badge bg-success">SUCCESS</span>';
                     } else {
-                        return '<span class="badge badge-danger">CANCELLED</span>';
+                        return '<span class="badge bg-danger">CANCELLED</span>';
                     }
                 })
                 ->editColumn('created_at', function ($item) {

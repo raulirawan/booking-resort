@@ -65,9 +65,16 @@
                         </div>
 
                       @auth
+                      @if (request()->exists('from'))
                       <a href="{{ route('booking.form') }}?from={{ $from }}&to={{ $to }}&kamar_id={{ $kamar_id }}&adult={{ $adult }}&children={{ $children }}&total_kamar={{ $total_kamar }}" class="btn btn-info btn-lg btn-block" >
                         Booking Sekarang
+                        </a>
+                      @else
+                      <a href="{{ route('kamar.list') }}" class="btn btn-info btn-lg btn-block" >
+                        Kembali Ke Halaman Kamar
                     </a>
+                      @endif
+
                       @endauth
                       @guest
                       <a href="{{ route('login') }}" class="btn btn-info btn-lg btn-block" >

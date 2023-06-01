@@ -68,7 +68,8 @@
                                             <img src="{{ asset($gambar[0] ?? '') }}" style="width: 100px">
                                         </td>
                                         <td>
-                                            <a href="{{ route('admin.kamar.edit', $item->id) }}" class="btn btn-info btn-sm">Edit</a>
+                                            <a href="{{ route('admin.kamar.edit', $item->id) }}"
+                                                class="btn btn-info btn-sm">Edit</a>
                                             <a href="{{ route('admin.kamar.delete', $item->id) }}"
                                                 onclick="return confirm('Yakin ?')" class="btn btn-danger btn-sm">Hapus</a>
                                         </td>
@@ -109,17 +110,26 @@
                                     <label for="helpInputTop">Tipe Kamar</label>
                                     <select name="tipe_kamar" id="tipe_kamar" class="form-control" required>
                                         <option value="">Pilih Tipe Kamar</option>
-                                        <option value="Gold" @if (old('tipe_kamar') == 'Gold') selected="selected" @endif >Gold</option>
-                                        <option value="Silver"@if (old('tipe_kamar') == 'Silver') selected="selected" @endif>Silver</option>
-                                        <option value="Bronze"@if (old('tipe_kamar') == 'Bronze') selected="selected" @endif>Bronze</option>
+                                        <option value="Gold" @if (old('tipe_kamar') == 'Gold') selected="selected" @endif>
+                                            Gold</option>
+                                        <option value="Silver"@if (old('tipe_kamar') == 'Silver') selected="selected" @endif>
+                                            Silver</option>
+                                        <option value="Bronze"@if (old('tipe_kamar') == 'Bronze') selected="selected" @endif>
+                                            Bronze</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="helpInputTop">Jenis Bed</label>
                                     <select name="jenis_bed" id="jenis_bed" class="form-control" required>
                                         <option value="">Pilih Jenis Bed</option>
-                                        <option value="Twin" @if (old('jenis_bed') == 'Twin') selected="selected" @endif>Twin</option>
-                                        <option value="Double" @if (old('jenis_bed') == 'Double') selected="selected" @endif>Double</option>
+                                        <option value="Twin" @if (old('jenis_bed') == 'Twin') selected="selected" @endif>
+                                            Twin</option>
+                                        <option value="Double" @if (old('jenis_bed') == 'Double') selected="selected" @endif>
+                                            Double</option>
+                                        <option value="Big" @if (old('jenis_bed') == 'Big') selected="selected" @endif>
+                                            Big</option>
+                                        <option value="Small" @if (old('jenis_bed') == 'Small') selected="selected" @endif>
+                                            Small</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -141,12 +151,11 @@
 
                                 <div class="form-group">
                                     <label for="helpInputTop">Gambar</label>
-                                    <input type="file" class="form-control" name="gambar[]"
-                                    multiple required>
+                                    <input type="file" class="form-control" name="gambar[]" multiple required>
                                     @if ($errors->has('gambar.*'))
-                                    <span class="text-danger">{{ $errors->first('gambar.*') }}</span>
+                                        <span class="text-danger">{{ $errors->first('gambar.*') }}</span>
                                     @else
-                                    <div class="text-muted">Gambar Bisa Lebih Dari Satu</div>
+                                        <div class="text-muted">Gambar Bisa Lebih Dari Satu</div>
                                     @endif
                                 </div>
 

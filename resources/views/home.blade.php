@@ -6,8 +6,8 @@
         <div class="welcome-slides owl-carousel">
             <!-- Single Welcome Slide -->
             <div class="single-welcome-slide bg-img bg-overlay"
-                style="background-image: url({{ asset('frontend') }}/img/bg-img/16.jpg);"
-                data-img-url="{{ asset('frontend') }}/img/bg-img/16.jpg">
+                style="background-image: url({{ asset('assets/images/home-1.jpeg') }});"
+                data-img-url="{{ asset('assets/images/home-1.jpeg') }}">
                 <!-- Welcome Content -->
                 <div class="welcome-content h-100">
                     <div class="container h-100">
@@ -28,8 +28,8 @@
 
             <!-- Single Welcome Slide -->
             <div class="single-welcome-slide bg-img bg-overlay"
-                style="background-image: url({{ asset('frontend') }}/img/bg-img/17.jpg);"
-                data-img-url="{{ asset('frontend') }}/img/bg-img/17.jpg">
+                style="background-image: url({{ asset('assets/images/home-2.jpeg') }});"
+                data-img-url="{{ asset('assets/images/home-2.jpeg') }}">
                 <!-- Welcome Content -->
                 <div class="welcome-content h-100">
                     <div class="container h-100">
@@ -50,8 +50,8 @@
 
             <!-- Single Welcome Slide -->
             <div class="single-welcome-slide bg-img bg-overlay"
-                style="background-image: url({{ asset('frontend') }}/img/bg-img/18.jpg);"
-                data-img-url="{{ asset('frontend') }}/img/bg-img/18.jpg">
+                style="background-image: url({{ asset('assets/images/home-3.jpeg') }});"
+                data-img-url="{{ asset('assets/images/home-3.jpeg') }}">
                 <!-- Welcome Content -->
                 <div class="welcome-content h-100">
                     <div class="container h-100">
@@ -140,15 +140,12 @@
                     <!-- Section Heading -->
                     <div class="section-heading wow fadeInUp" data-wow-delay="100ms">
                         <h6>About Us</h6>
-                        <h2>Welcome to <br>Roberto Hotel Luxury</h2>
+                        <h2>Welcome to <br>Sibea bea resort samosir</h2>
                     </div>
                     <div class="about-us-content mb-100">
-                        <h5 class="wow fadeInUp" data-wow-delay="300ms">With over 340 hotels worldwide, NH Hotel Group
-                            offers a wide variety of hotels catering for a perfect stay no matter where your destination.
+                        <h5 class="wow fadeInUp" data-wow-delay="300ms">With more than hundreds of hotels around Lake Toba, Sibeabea Resort Samosir offers rooms that serve the perfect stay when you visit or vacation to Lake Toba.
                         </h5>
-                        <p class="wow fadeInUp" data-wow-delay="400ms">Manager: <span>Michen Taylor</span></p>
-                        <img src="{{ asset('frontend') }}/img/bg-img/signature.png" alt="" class="wow fadeInUp"
-                            data-wow-delay="500ms">
+
                     </div>
                 </div>
 
@@ -157,15 +154,15 @@
                         <div class="row no-gutters">
                             <div class="col-6">
                                 <div class="single-thumb">
-                                    <img src="{{ asset('frontend') }}/img/bg-img/13.jpg" alt="">
+                                    <img src="{{ asset('assets/images/about-us-2.jpg') }}" alt="">
                                 </div>
                                 <div class="single-thumb">
-                                    <img src="{{ asset('frontend') }}/img/bg-img/14.jpg" alt="">
+                                    <img src="{{ asset('assets/images/about-us-3.jpg') }}" alt="">
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="single-thumb">
-                                    <img src="{{ asset('frontend') }}/img/bg-img/15.jpg" alt="">
+                                    <img src="{{ asset('assets/images/about-us-1.jpg') }}" alt="">
                                 </div>
                             </div>
                         </div>
@@ -243,6 +240,7 @@
                         </span>
                         </li>
                     </ul>
+                    <a href="{{ route('kamar.detail', $kamar->slug) }}" class="btn roberto-btn mt-30" data-animation="fadeInUp" data-delay="700ms">View Details</a>
                 </div>
             </div>
             @endforeach
@@ -289,6 +287,21 @@
             </div>
         </div>
     </section>
+    @push('down-script')
+   <script>
+    $('#checkIn').change(function () {
+
+        const date = new Date($(this).val());
+
+        const tomorrow = date.setDate(date.getDate() + 1);
+
+        const tomorrowDate = new Date(tomorrow);
+        var currentDate = tomorrowDate.toISOString().substring(0,10);
+
+        document.getElementById('checkOut').value = currentDate;
+    });
+   </script>
+    @endpush
     <!-- Blog Area End -->
 
 

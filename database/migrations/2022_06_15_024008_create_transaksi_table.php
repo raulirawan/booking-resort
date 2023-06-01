@@ -26,7 +26,7 @@ class CreateTransaksiTable extends Migration
             $table->integer('children')->nullable();
             $table->integer('total_harga')->nullable();
             $table->text('alamat')->nullable();
-            $table->enum('status', ['PENDING','SUCCESS','CHECK IN','CHECK OUT','CANCELLED'])->nullable();
+            $table->enum('status', ['PENDING', 'SUCCESS', 'CHECK IN', 'CHECK OUT', 'CANCELLED'])->nullable();
 
             $table->timestamps();
         });

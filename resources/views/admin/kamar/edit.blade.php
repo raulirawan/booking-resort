@@ -55,6 +55,8 @@
                                         <option value="">Pilih Jenis Bed</option>
                                         <option value="Twin" {{ $data->jenis_bed == 'Twin' ? 'selected' : '' }}>Twin</option>
                                         <option value="Double" {{ $data->jenis_bed == 'Double' ? 'selected' : '' }}>Double</option>
+                                        <option value="Big" {{ $data->jenis_bed == 'Big' ? 'selected' : '' }}>Big</option>
+                                        <option value="Small" {{ $data->jenis_bed == 'Small' ? 'selected' : '' }}>Small</option>
                                     </select>
                                 </div>
                                 <div class="form-group">

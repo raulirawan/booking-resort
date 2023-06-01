@@ -81,10 +81,10 @@
                             <div class="input-daterange" id="datepicker">
                                 <div class="row no-gutters">
                                     <div class="col-6">
-                                        <input type="date" class="input-small form-control" value="{{ date("Y-m-d", strtotime(date("d-m-Y"))) }}" name="checkin_date" placeholder="Check In" required>
+                                        <input type="date" class="input-small form-control" id="checkIn" value="{{ date("Y-m-d", strtotime(date("d-m-Y"))) }}" name="checkin_date" placeholder="Check In" required>
                                     </div>
                                     <div class="col-6">
-                                        <input type="date" class="input-small form-control" value="{{ date("Y-m-d", strtotime("+1 day", strtotime(date("d-m-Y")))) }}" name="checkout_date" placeholder="Check Out" required>
+                                        <input type="date" class="input-small form-control" id="checkOut" value="{{ date("Y-m-d", strtotime("+1 day", strtotime(date("d-m-Y")))) }}" name="checkout_date" placeholder="Check Out" required>
                                     </div>
                                 </div>
                             </div>
@@ -137,6 +137,20 @@
     </div>
 </div>
 <!-- Rooms Area End -->
+@push('down-script')
+<script>
+ $('#checkIn').change(function () {
 
+     const date = new Date($(this).val());
+
+     const tomorrow = date.setDate(date.getDate() + 1);
+
+     const tomorrowDate = new Date(tomorrow);
+     var currentDate = tomorrowDate.toISOString().substring(0,10);
+
+     document.getElementById('checkOut').value = currentDate;
+ });
+</script>
+ @endpush
 
 @endsection
